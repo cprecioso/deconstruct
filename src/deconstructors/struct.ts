@@ -1,4 +1,4 @@
-import { Deconstructor, StructDeconstructor } from "../types"
+import { Deconstructor } from "../types"
 import { skip } from "./skip"
 
 export function struct(): StructDeconstructor<{}> {
@@ -10,7 +10,9 @@ interface Inner {
   deconstructor: Deconstructor<unknown>
 }
 
-class _StructDeconstructor<T extends {}> implements StructDeconstructor<T> {
+export type StructDeconstructor<T extends {}> = _StructDeconstructor<T>
+
+class _StructDeconstructor<T extends {}> implements Deconstructor<T> {
   constructor(protected readonly _inners: ReadonlyArray<Inner>) {}
 
   bytes = (() => {
@@ -23,6 +25,9 @@ class _StructDeconstructor<T extends {}> implements StructDeconstructor<T> {
     return sum
   })()
 
+  /**
+   * @internal
+   */
   _fromBuffer(buffer: Buffer, offset: number) {
     const res: Partial<T> = {}
     let accumulatedOffset = offset
