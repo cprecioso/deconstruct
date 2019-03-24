@@ -67,4 +67,15 @@ class _StructDeconstructor<T extends {}> implements Deconstructor<T> {
   skip(bytes: number) {
     return this.check(skip(bytes))
   }
+
+  offsetForField(fieldName: keyof T) {
+    let accumulatedOffset = 0
+    for (let i = 0; i < this._inners.length; i++) {
+      const inner = this._inners[i]
+      if (inner.fieldName === fieldName) return accumulatedOffset
+      if (inner.deconstructor.bytes == null) return undefined
+      accumulatedOffset += inner.deconstructor.bytes
+    }
+    throw new Error("No such field " + fieldName)
+  }
 }
