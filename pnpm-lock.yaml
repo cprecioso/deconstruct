@@ -1,6 +1,5 @@
 devDependencies:
   '@types/node': 11.11.6
-  prettier: 1.16.4
   typescript: 3.4.0-rc
 lockfileVersion: 5
 packages:
@@ -8,13 +7,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Exw4yUWMBXM3X+8oqzJNRqZSwUAaS4+7NdvHqQuFi/d+synz++xmX3QIf+BFqneW8N31R8Ky+sikfZUXq07ggQ==
-  /prettier/1.16.4:
-    dev: true
-    engines:
-      node: '>=4'
-    hasBin: true
-    resolution:
-      integrity: sha512-ZzWuos7TI5CKUeQAtFd6Zhm2s6EpAD/ZLApIhsF9pRvRtM1RFo61dM/4MSRUA0SuLugA/zgrZD8m0BaY46Og7g==
   /typescript/3.4.0-rc:
     dev: true
     engines:
@@ -24,5 +16,4 @@ packages:
       integrity: sha512-wtm2GwuV0Yy2zvmpFaMDtWHnRbzfERi9FLpL+K+JqGkHoclgEQ6TmD1AMxMIjs80NWRIq0Xp1veQyuZbGsUYsg==
 specifiers:
   '@types/node': ^11.11.6
-  prettier: ^1.16.4
   typescript: ^3.4.0-rc
