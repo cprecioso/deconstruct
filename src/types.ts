@@ -1,10 +1,18 @@
+/**
+ * @internal
+ */
+export interface Deconstruction<T> {
+  value: T
+  bytesUsed: number
+}
+
 export interface Deconstructor<T> {
-  readonly bytes: number
+  readonly bytes?: number
 
   /**
    * @internal
    */
-  _fromBuffer(buffer: Buffer, offset: number): T
+  _fromBuffer(buffer: Buffer, offset: number): Deconstruction<T>
 }
 
 export interface StructDeconstructor<T extends {}> extends Deconstructor<T> {

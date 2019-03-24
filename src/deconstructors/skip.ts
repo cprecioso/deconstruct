@@ -8,6 +8,6 @@ class SkipDeconstructor implements Deconstructor<void> {
   constructor(public readonly bytes: number) {}
 
   _fromBuffer() {
-    return
+    return { value: undefined, bytesUsed: this.bytes }
   }
 }

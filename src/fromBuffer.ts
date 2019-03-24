@@ -5,5 +5,5 @@ export function fromBuffer<T>(
   buf: Buffer,
   offset = 0
 ): T {
-  return deconstructor._fromBuffer(buf, offset)
+  return deconstructor._fromBuffer(buf, offset).value
 }

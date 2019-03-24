@@ -8,26 +8,23 @@ export function list<T>(
 }
 
 class ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
-  bytes = this._inner.bytes * this._times
+  bytes = this._inner.bytes ? this._inner.bytes * this._times : undefined
 
   constructor(
     public readonly _times: number,
     public readonly _inner: Deconstructor<T>
   ) {}
 
-  _fromBuffer(buffer: Buffer, listStartOffset: number) {
-    const itemLength = this._inner.bytes
-    const listEndOffset = listStartOffset + this._times * itemLength
+  _fromBuffer(buffer: Buffer, offset: number) {
+    const values: T[] = []
+    let accumulatedOffset = offset
 
-    const res: T[] = []
-    for (
-      let itemOffset = listStartOffset;
-      itemOffset < listEndOffset;
-      itemOffset += itemLength
-    ) {
-      res.push(this._inner._fromBuffer(buffer, itemOffset))
+    for (let i = 0; i < this._times; i++) {
+      const deconstruction = this._inner._fromBuffer(buffer, accumulatedOffset)
+      values.push(deconstruction.value)
+      accumulatedOffset += deconstruction.bytesUsed
     }
 
-    return res
+    return { value: values, bytesUsed: accumulatedOffset - offset }
   }
 }

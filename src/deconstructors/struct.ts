@@ -13,12 +13,15 @@ interface Inner {
 class _StructDeconstructor<T extends {}> implements StructDeconstructor<T> {
   constructor(protected readonly _inners: ReadonlyArray<Inner>) {}
 
-  get bytes() {
+  bytes = (() => {
     let sum = 0
-    for (let i = 0; i < this._inners.length; i++)
-      sum += this._inners[i].deconstructor.bytes
+    for (let i = 0; i < this._inners.length; i++) {
+      const innerBytes = this._inners[i].deconstructor.bytes
+      if (!innerBytes) return undefined
+      sum += innerBytes
+    }
     return sum
-  }
+  })()
 
   _fromBuffer(buffer: Buffer, offset: number) {
     const res: Partial<T> = {}
@@ -26,12 +29,12 @@ class _StructDeconstructor<T extends {}> implements StructDeconstructor<T> {
 
     for (let i = 0; i < this._inners.length; i++) {
       const { fieldName, deconstructor: inner } = this._inners[i]
-      const deconstructResult = inner._fromBuffer(buffer, accumulatedOffset)
-      if (fieldName != null) (res as any)[fieldName] = deconstructResult
-      accumulatedOffset += inner.bytes
+      const deconstruction = inner._fromBuffer(buffer, accumulatedOffset)
+      if (fieldName != null) (res as any)[fieldName] = deconstruction.value
+      accumulatedOffset += deconstruction.bytesUsed
     }
 
-    return res as T
+    return { value: res as T, bytesUsed: accumulatedOffset - offset }
   }
 
   field<P extends string, V>(

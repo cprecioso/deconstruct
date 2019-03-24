@@ -8,6 +8,9 @@ class RawDeconstructor implements Deconstructor<Buffer> {
   constructor(public readonly bytes: number) {}
 
   _fromBuffer(buffer: Buffer, offset: number) {
-    return buffer.slice(offset, offset + this.bytes)
+    return {
+      value: buffer.slice(offset, offset + this.bytes),
+      bytesUsed: this.bytes
+    }
   }
 }

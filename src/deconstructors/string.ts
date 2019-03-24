@@ -14,6 +14,9 @@ class StringDeconstructor implements Deconstructor<string> {
   ) {}
 
   _fromBuffer(buffer: Buffer, offset: number) {
-    return buffer.toString(this._encoding, offset, offset + this.bytes)
+    return {
+      value: buffer.toString(this._encoding, offset, offset + this.bytes),
+      bytesUsed: this.bytes
+    }
   }
 }

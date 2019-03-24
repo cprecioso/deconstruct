@@ -25,7 +25,7 @@ class MagicNumberDeconstructor implements Deconstructor<Buffer> {
   _fromBuffer(buffer: Buffer, offset: number) {
     const magicNumber = buffer.slice(offset, offset + this.bytes)
     if (magicNumber.equals(this._expectedValue)) {
-      return magicNumber
+      return { value: magicNumber, bytesUsed: this.bytes }
     } else {
       throw new Error(
         `Magic number doesn't match
