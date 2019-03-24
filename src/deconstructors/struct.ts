@@ -41,6 +41,14 @@ class _StructDeconstructor<T extends {}> implements StructDeconstructor<T> {
     fieldName: P | null,
     deconstructor: Deconstructor<V>
   ): _StructDeconstructor<T & { [K in P]: V }> {
+    if (fieldName != null) {
+      for (let i = 0; i < this._inners.length; i++) {
+        const inner = this._inners[i]
+        if (inner.fieldName === fieldName)
+          throw new Error("Repeated fieldName " + fieldName)
+      }
+    }
+
     return new _StructDeconstructor([
       ...this._inners,
       { fieldName, deconstructor }
