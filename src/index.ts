@@ -1,5 +1,6 @@
 export * from "./deconstructors/list"
 export * from "./deconstructors/magicNumber"
+export * from "./deconstructors/number"
 export * from "./deconstructors/raw"
 export * from "./deconstructors/skip"
 export * from "./deconstructors/string"
