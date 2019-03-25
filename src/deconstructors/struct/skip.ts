@@ -1,4 +1,4 @@
-import { Deconstructor } from "../types"
+import { Deconstructor } from "../../types"
 
 export function skip(bytes: number): Deconstructor<void> {
   return new SkipDeconstructor(bytes)
