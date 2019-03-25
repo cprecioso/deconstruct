@@ -17,9 +17,6 @@ class _ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
     public readonly _inner: Deconstructor<T>
   ) {}
 
-  /**
-   * @internal
-   */
   _fromBuffer(buffer: Buffer, offset: number) {
     const values: T[] = []
     let accumulatedOffset = offset

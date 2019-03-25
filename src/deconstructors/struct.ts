@@ -25,9 +25,6 @@ class _StructDeconstructor<T extends {}> implements Deconstructor<T> {
     return sum
   })()
 
-  /**
-   * @internal
-   */
   _fromBuffer(buffer: Buffer, offset: number) {
     const res: Partial<T> = {}
     let accumulatedOffset = offset
@@ -45,7 +42,7 @@ class _StructDeconstructor<T extends {}> implements Deconstructor<T> {
   field<P extends string, V>(
     fieldName: P | null,
     deconstructor: Deconstructor<V>
-  ): _StructDeconstructor<T & { [K in P]: V }> {
+  ): StructDeconstructor<T & { [K in P]: V }> {
     if (fieldName != null) {
       for (let i = 0; i < this._inners.length; i++) {
         const inner = this._inners[i]
@@ -60,15 +57,15 @@ class _StructDeconstructor<T extends {}> implements Deconstructor<T> {
     ])
   }
 
-  check(inner: Deconstructor<any>) {
+  check(inner: Deconstructor<any>): StructDeconstructor<T> {
     return this.field(null, inner)
   }
 
-  skip(bytes: number) {
+  skip(bytes: number): StructDeconstructor<T> {
     return this.check(skip(bytes))
   }
 
-  offsetForField(fieldName: keyof T) {
+  offsetForField(fieldName: keyof T): number | undefined {
     let accumulatedOffset = 0
     for (let i = 0; i < this._inners.length; i++) {
       const inner = this._inners[i]
