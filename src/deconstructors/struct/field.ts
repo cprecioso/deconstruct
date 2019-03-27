@@ -1,7 +1,7 @@
 import { Deconstruction, Deconstructor } from "../../types"
 import { BaseStructDeconstructor, StructDeconstructor } from "./base"
 
-export function field<T extends {}, F extends string, U>(
+export function fieldStruct<T extends {}, F extends string, U>(
   previous: BaseStructDeconstructor<T>,
   fieldName: F,
   inner: Deconstructor<U>
@@ -15,7 +15,7 @@ class FieldStructDeconstructor<
   T extends {},
   F extends string,
   U,
-  R = T & { [K in F]: U }
+  R extends T & { [K in F]: U } = T & { [K in F]: U }
 > implements BaseStructDeconstructor<R> {
   constructor(
     protected readonly _previous: BaseStructDeconstructor<T>,

@@ -1,7 +1,7 @@
 import { Deconstruction, Deconstructor } from "../../types"
-import { check } from "./check"
-import { field } from "./field"
 import { skip } from "../skip"
+import { checkStruct } from "./check"
+import { fieldStruct } from "./field"
 
 export interface BaseStructDeconstructor<T extends {}>
   extends Deconstructor<T> {
@@ -30,11 +30,11 @@ export class StructDeconstructor<T extends {}>
     fieldName: F,
     inner: Deconstructor<U>
   ): StructDeconstructor<T & { [K in F]: U }> {
-    return field(this, fieldName, inner)
+    return fieldStruct(this, fieldName, inner)
   }
 
   check<U>(inner: Deconstructor<U>): StructDeconstructor<T> {
-    return check(this, inner)
+    return checkStruct(this, inner)
   }
 
   skip(bytes: number): StructDeconstructor<T> {

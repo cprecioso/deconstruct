@@ -1,7 +1,7 @@
 import { Deconstruction, Deconstructor } from "../../types"
 import { BaseStructDeconstructor, StructDeconstructor } from "./base"
 
-export function check<T extends {}, U>(
+export function checkStruct<T extends {}, U>(
   previous: BaseStructDeconstructor<T>,
   inner: Deconstructor<U>
 ): StructDeconstructor<T> {
