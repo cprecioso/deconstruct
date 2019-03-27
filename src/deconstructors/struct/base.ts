@@ -1,7 +1,7 @@
 import { Deconstruction, Deconstructor } from "../../types"
 import { check } from "./check"
 import { field } from "./field"
-import { skip } from "./skip"
+import { skip } from "../skip"
 
 export interface BaseStructDeconstructor<T extends {}>
   extends Deconstructor<T> {
