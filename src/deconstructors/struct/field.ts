@@ -24,9 +24,10 @@ class FieldStructDeconstructor<
   ) {}
 
   readonly bytes: number | undefined =
-    this._previous.bytes &&
-    this._inner.bytes &&
-    this._previous.bytes + this._inner.bytes
+    (this._previous.bytes != null &&
+      this._inner.bytes != null &&
+      this._previous.bytes + this._inner.bytes) ||
+    undefined
 
   _fromBuffer(buffer: Buffer, offset: number): Deconstruction<R> {
     const previousData = this._previous._fromBuffer(buffer, offset)
