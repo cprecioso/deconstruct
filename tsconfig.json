@@ -1,13 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "strict": true,
-    "outDir": "lib",
-    "rootDir": "src",
-    "declaration": true
-  },
+  "extends": "@cprecioso/tsconfig/esm",
   "include": ["src/**/*", "types/**/*"]
 }
