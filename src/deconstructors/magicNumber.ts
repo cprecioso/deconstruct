@@ -3,12 +3,12 @@ import { Deconstructor } from "../types"
 export function magicNumber(buf: Buffer): Deconstructor<Buffer>
 export function magicNumber(
   str: string,
-  encoding?: string
+  encoding?: BufferEncoding
 ): Deconstructor<Buffer>
 
 export function magicNumber(
   strOrBuffer: Buffer | string,
-  encoding?: string
+  encoding?: BufferEncoding
 ): Deconstructor<Buffer> {
   const buf = Buffer.isBuffer(strOrBuffer)
     ? strOrBuffer
