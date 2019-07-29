@@ -1,4 +1,5 @@
 {
   "extends": "@cprecioso/tsconfig/esm",
-  "include": ["src/**/*", "types/**/*"]
+  "include": ["src/**/*", "types/**/*"],
+  "compilerOptions": { "noEmit": true }
 }
