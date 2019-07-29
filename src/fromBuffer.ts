@@ -4,7 +4,8 @@ import { Deconstructor } from "./types"
 export function fromBuffer<T>(
   deconstructor: Deconstructor<T>,
   buf: Buffer,
-  offset = 0
+  offset = 0,
+  length?: number
 ): T {
   if (buf.length < (deconstructor.bytes || deconstructor.minBytes))
     throw new Error(
@@ -13,5 +14,8 @@ export function fromBuffer<T>(
       } bytes) is too short for the created Deconstructor (${deconstructor.bytes ||
         deconstructor.minBytes} bytes)`
     )
-  return deconstructor._fromBuffer(buf, offset).value
+  return deconstructor._fromBuffer(
+    buf.slice(offset, length != null ? offset + length : undefined),
+    0
+  ).value
 }

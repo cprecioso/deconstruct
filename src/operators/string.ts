@@ -3,7 +3,7 @@ import { Deconstructor } from "../types"
 /** Extracts a specific number of bytes and tries to decode them with the given encoding */
 export function string(
   bytes: number,
-  encoding = "utf8"
+  encoding: BufferEncoding = "utf8"
 ): Deconstructor<string> {
   return new StringDeconstructor(bytes, encoding)
 }
@@ -11,7 +11,7 @@ export function string(
 class StringDeconstructor implements Deconstructor<string> {
   constructor(
     public readonly bytes: number,
-    public readonly encoding: string
+    public readonly encoding: BufferEncoding
   ) {}
 
   readonly minBytes = this.bytes

@@ -1,10 +1,39 @@
 {
   "name": "deconstruct",
   "version": "0.0.0",
-  "scripts": {
-    "prepare": "rollup -c"
+  "description": "A declarative buffer unpacker for JavaScript",
+  "keywords": [
+    "buffer",
+    "bytes",
+    "struct"
+  ],
+  "homepage": "https://github.com/cprecioso/deconstruct#readme",
+  "bugs": {
+    "url": "https://github.com/cprecioso/deconstruct/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cprecioso/deconstruct.git"
+  },
+  "license": "MIT",
+  "author": "Carlos Precioso <kalprestito@gmail.com>",
+  "files": [
+    "lib"
+  ],
   "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/index.es.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "clean": "del-cli lib",
+    "prepare": "npm run clean; npm run build",
+    "watch": "rollup -cw"
+  },
+  "dependencies": {},
   "devDependencies": {
     "@cprecioso/tsconfig": "^0.0.4",
     "@types/node": "^12.6.8",
