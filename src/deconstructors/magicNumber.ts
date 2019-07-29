@@ -19,19 +19,19 @@ export function magicNumber(
 }
 
 class MagicNumberDeconstructor implements Deconstructor<Buffer> {
-  readonly bytes = this._expectedValue.length
-  readonly minBytes = this.bytes
+  constructor(public readonly expectedValue: Buffer) {}
 
-  constructor(public readonly _expectedValue: Buffer) {}
+  readonly bytes = this.expectedValue.length
+  readonly minBytes = this.bytes
 
   _fromBuffer(buffer: Buffer, offset: number) {
     const magicNumber = buffer.slice(offset, offset + this.bytes)
-    if (magicNumber.equals(this._expectedValue)) {
+    if (magicNumber.equals(this.expectedValue)) {
       return { value: magicNumber, bytesUsed: this.bytes }
     } else {
       throw new Error(
         `Magic number doesn't match
-  Expected: ${this._expectedValue}
+  Expected: ${this.expectedValue}
        Got: ${magicNumber}`
       )
     }

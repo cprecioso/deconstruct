@@ -11,14 +11,14 @@ export function string(
 class StringDeconstructor implements Deconstructor<string> {
   constructor(
     public readonly bytes: number,
-    public readonly _encoding: string
+    public readonly encoding: string
   ) {}
 
   readonly minBytes = this.bytes
 
   _fromBuffer(buffer: Buffer, offset: number) {
     return {
-      value: buffer.toString(this._encoding, offset, offset + this.bytes),
+      value: buffer.toString(this.encoding, offset, offset + this.bytes),
       bytesUsed: this.bytes
     }
   }
