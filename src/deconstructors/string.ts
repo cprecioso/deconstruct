@@ -13,6 +13,8 @@ class StringDeconstructor implements Deconstructor<string> {
     public readonly _encoding: string
   ) {}
 
+  readonly minBytes = this.bytes
+
   _fromBuffer(buffer: Buffer, offset: number) {
     return {
       value: buffer.toString(this._encoding, offset, offset + this.bytes),

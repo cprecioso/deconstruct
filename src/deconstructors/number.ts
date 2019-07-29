@@ -6,6 +6,8 @@ class NumberDeconstructor implements Deconstructor<number> {
     protected _fn: (this: Buffer, offset: number, byteLength: number) => number
   ) {}
 
+  readonly minBytes = this.bytes
+
   _fromBuffer(buffer: Buffer, offset: number): Deconstruction<number> {
     return {
       value: this._fn.call(buffer, offset, this.bytes),

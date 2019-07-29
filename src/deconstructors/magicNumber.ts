@@ -18,7 +18,8 @@ export function magicNumber(
 }
 
 class MagicNumberDeconstructor implements Deconstructor<Buffer> {
-  bytes = this._expectedValue.byteLength
+  readonly bytes = this._expectedValue.length
+  readonly minBytes = this.bytes
 
   constructor(public readonly _expectedValue: Buffer) {}
 

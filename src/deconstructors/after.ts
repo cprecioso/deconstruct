@@ -14,6 +14,7 @@ class AfterDeconstructor<T, U> implements Deconstructor<U> {
   ) {}
 
   readonly bytes = undefined
+  readonly minBytes = this._previous.minBytes
 
   _fromBuffer(buffer: Buffer, offset: number): Deconstruction<U> {
     const previousData = this._previous._fromBuffer(buffer, offset)

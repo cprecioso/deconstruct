@@ -53,12 +53,14 @@ class StructDeconstructor<
     protected readonly _inner: Deconstructor<I> | LateDeconstructor<P, I>
   ) {}
 
-  readonly bytes: number | undefined = this._isLate
+  readonly bytes = this._isLate
     ? undefined
     : this._previous.bytes != null &&
       (this._inner as Deconstructor<I>).bytes != null
     ? this._previous.bytes + (this._inner as Deconstructor<I>).bytes!
     : undefined
+
+  readonly minBytes = this.bytes || this._previous.minBytes
 
   field<F extends string, U>(
     fieldName: F,
@@ -133,6 +135,7 @@ class StructDeconstructor<
 
 class EmptyStructDeconstructor implements BasicStructDeconstructor<{}> {
   readonly bytes = 0
+  readonly minBytes = 0
   _fromBuffer() {
     return { value: {}, bytesUsed: 0 }
   }

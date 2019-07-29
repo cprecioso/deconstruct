@@ -10,7 +10,10 @@ export function list<T>(
 export type ListDeconstructor<T> = _ListDeconstructor<T>
 
 class _ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
-  bytes = this._inner.bytes ? this._inner.bytes * this._times : undefined
+  readonly bytes = this._inner.bytes
+    ? this._inner.bytes * this._times
+    : undefined
+  readonly minBytes = this.bytes || 0
 
   constructor(
     public readonly _times: number,

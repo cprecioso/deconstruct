@@ -7,6 +7,8 @@ export function skip(bytes: number): Deconstructor<void> {
 class SkipDeconstructor implements Deconstructor<void> {
   constructor(public readonly bytes: number) {}
 
+  readonly minBytes = this.bytes
+
   _fromBuffer() {
     return { value: undefined, bytesUsed: this.bytes }
   }

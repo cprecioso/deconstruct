@@ -21,7 +21,13 @@ export interface Deconstructor<T> {
    * Bytes to be read by the deconstructor
    * If it's not known in advance, set it to `undefined`
    */
-  readonly bytes?: number
+  readonly bytes: number | undefined
+
+  /**
+   * The minimum number of bytes to be read by the deconstructor
+   * It only reflects the bytes that we know in advance are going to be used. It's not a guarantee of a successful deconstruction.
+   */
+  readonly minBytes: number
 
   /**
    * The function that actually reads the buffer and returns deconstructed value
