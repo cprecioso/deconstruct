@@ -2,7 +2,7 @@ import { Deconstruction, Deconstructor } from "../types"
 import { empty } from "./empty"
 import { skip } from "./skip"
 
-export type LateDeconstructor<T extends {}, U> = (
+type LateDeconstructor<T extends {}, U> = (
   data: T,
   bytesUsed: number
 ) => Deconstructor<U>
