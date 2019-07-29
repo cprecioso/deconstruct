@@ -1,5 +1,5 @@
 {
-  "name": "deconstruct",
+  "name": "deconstruct-js",
   "version": "0.0.0",
   "description": "A declarative buffer unpacker for JavaScript",
   "keywords": [
@@ -7,13 +7,13 @@
     "bytes",
     "struct"
   ],
-  "homepage": "https://github.com/cprecioso/deconstruct#readme",
+  "homepage": "https://github.com/cprecioso/deconstruct-js#readme",
   "bugs": {
-    "url": "https://github.com/cprecioso/deconstruct/issues"
+    "url": "https://github.com/cprecioso/deconstruct-js/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cprecioso/deconstruct.git"
+    "url": "git+https://github.com/cprecioso/deconstruct-js.git"
   },
   "license": "MIT",
   "author": "Carlos Precioso <kalprestito@gmail.com>",
