@@ -1,5 +1,6 @@
 import { Deconstruction, Deconstructor } from "../../types"
 import { skip } from "../skip"
+import { afterStruct } from "./after"
 import { checkStruct } from "./check"
 import { fieldStruct } from "./field"
 
@@ -31,6 +32,13 @@ export class StructDeconstructor<T extends {}>
     inner: Deconstructor<U>
   ): StructDeconstructor<T & { [K in F]: U }> {
     return fieldStruct(this, fieldName, inner)
+  }
+
+  after<F extends string, U>(
+    fieldName: F,
+    innerFn: (data: T, bytesUsed: number) => Deconstructor<U>
+  ): StructDeconstructor<T & { [K in F]: U }> {
+    return afterStruct(this, fieldName, innerFn)
   }
 
   check<U>(inner: Deconstructor<U>): StructDeconstructor<T> {
