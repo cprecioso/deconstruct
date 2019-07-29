@@ -6,7 +6,7 @@ import { Deconstruction, Deconstructor } from "../types"
  * ```js
  * const d = require("deconstruct")
  * // This Buffer consists of [length of string, ascii data] pairs, repeated three times.
- * const buf = new Buffer([
+ * const buf = Buffer.from([
  * // length    string data
  *    0x05,     0x68,0x65,0x6c,0x6c,0x6f,
  *    0x05,     0x77,0x6f,0x72,0x6c,0x64,
