@@ -30,7 +30,9 @@ export interface Deconstructor<T> {
   readonly minBytes: number
 
   /**
-   * The function that actually reads the buffer and returns deconstructed value
+   * @protected The function that actually reads the buffer and returns deconstructed value
+   *
+   * You shouldn't call this function explicitly. However, if you're _implementing_ a new Deconstructor, this is where you do it.
    */
   _fromBuffer(buffer: Buffer, offset: number): Deconstruction<T>
 }

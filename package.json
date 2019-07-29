@@ -4,6 +4,7 @@
   "scripts": {
     "prepare": "rollup -c"
   },
+  "sideEffects": false,
   "devDependencies": {
     "@cprecioso/tsconfig": "^0.0.4",
     "@types/node": "^12.6.8",

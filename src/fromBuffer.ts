@@ -1,5 +1,6 @@
 import { Deconstructor } from "./types"
 
+/** Executes a Deconstructor on a Buffer, and returns its result */
 export function fromBuffer<T>(
   deconstructor: Deconstructor<T>,
   buf: Buffer,

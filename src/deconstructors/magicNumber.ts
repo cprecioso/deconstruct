@@ -1,5 +1,6 @@
 import { Deconstructor } from "../types"
 
+/** Extract a specific sequence of bytes. Errors if they don't match */
 export function magicNumber(buf: Buffer): Deconstructor<Buffer>
 export function magicNumber(
   str: string,

@@ -1,5 +1,6 @@
 import { Deconstructor } from "../types"
 
+/** Returns a Deconstructor that doesn't do anything - a noop. Useful for testing and internals. */
 export function empty<T>(defaultValue: T): Deconstructor<T> {
   return new EmptyDeconstructor(defaultValue)
 }

@@ -1,5 +1,6 @@
 import { Deconstructor } from "../types"
 
+/** Extracts a sub-range of bytes */
 export function raw(bytes?: number | undefined): Deconstructor<Buffer> {
   return new RawDeconstructor(bytes)
 }

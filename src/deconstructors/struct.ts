@@ -9,6 +9,7 @@ export type LateDeconstructor<T extends {}, U> = (
 
 type Add<T extends {}, F extends string, U> = T & { [K in F]: U }
 
+/** Provides facilities to extract an object of different, named values. */
 export function struct(): PublicStructDeconstructor<{}> {
   return new StructDeconstructor(
     new EmptyStructDeconstructor(),
@@ -23,18 +24,37 @@ interface BasicStructDeconstructor<T extends {}> extends Deconstructor<T> {
 }
 
 interface PublicStructDeconstructor<T> extends Deconstructor<T> {
+  /** Find out where a given field starts */
   offsetForField(fieldName: keyof T): number | undefined
+  /** Add a field to the struct, extracting the following bytes with the given Deconstructor */
   field<F extends string, U>(
     fieldName: F,
     inner: Deconstructor<U>
   ): PublicStructDeconstructor<Add<T, F, U>>
+  /** Check that the following bytes are extractable with the given Deconstructor */
   check(inner: Deconstructor<any>): PublicStructDeconstructor<T>
+  /** Ignore the following number of bytes */
   skip(bytes: number): PublicStructDeconstructor<T>
+  /**
+   * Add a field to the struct, whose Deconstructor depends of previous values.
+   *
+   * Combines `struct.field()` and `after()`
+   */
   thenField<F extends string, U>(
     fieldName: F,
     innerFn: LateDeconstructor<T, U>
   ): PublicStructDeconstructor<Add<T, F, U>>
+  /**
+   * Check that the following bytes are extractable, with the Deconstructor depending on previous values.
+   *
+   * Combines `struct.check()` and `after()`
+   */
   thenCheck(innerFn: LateDeconstructor<T, any>): PublicStructDeconstructor<T>
+  /**
+   * Ignore the following a number of bytes, depending on previous values.
+   *
+   * Combines `struct.skip()` and `after()`
+   */
   thenSkip(innerFn: (data: T) => number): PublicStructDeconstructor<T>
 }
 
