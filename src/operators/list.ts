@@ -8,8 +8,6 @@ export function list<T>(
   return new _ListDeconstructor(deconstructor, times)
 }
 
-export type ListDeconstructor<T> = _ListDeconstructor<T>
-
 class _ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
   constructor(
     public readonly inner: Deconstructor<T>,
@@ -53,3 +51,4 @@ class _ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
     }
   }
 }
+export type ListDeconstructor<T> = _ListDeconstructor<T>
