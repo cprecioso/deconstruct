@@ -1,3 +1,5 @@
+dependencies:
+  jsbi: 3.0.0
 devDependencies:
   '@cprecioso/tsconfig': 0.0.4_typescript@3.5.3
   '@types/node': 12.6.8
@@ -122,6 +124,10 @@ packages:
     optional: true
     resolution:
       integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
+  /jsbi/3.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-3gj+H13urlMGogSVM5rZvvgrhFwLmLisVQKRoxPU7KunFHpeJk+Jfjkp2E/79QSMyUa45aDDNG8yHnKD6Gro6Q==
   /jsonfile/4.0.0:
     dev: true
     optionalDependencies:
@@ -208,6 +214,7 @@ packages:
 specifiers:
   '@cprecioso/tsconfig': ^0.0.4
   '@types/node': ^12.6.8
+  jsbi: ^3.0.0
   rollup: ^1.17.0
   rollup-plugin-dts: ^1.1.5
   rollup-plugin-typescript2: ^0.22.1
