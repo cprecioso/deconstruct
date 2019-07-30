@@ -31,15 +31,12 @@
     "build": "rollup -c",
     "clean": "del-cli lib",
     "prepare": "npm run clean; npm run build",
-    "watch": "rollup -cw",
-    "postinstall": "patch-package"
+    "watch": "rollup -cw"
   },
   "dependencies": {},
   "devDependencies": {
     "@cprecioso/tsconfig": "^0.0.4",
     "@types/node": "^12.6.8",
-    "patch-package": "^6.1.2",
-    "postinstall-postinstall": "^2.0.0",
     "rollup": "^1.17.0",
     "rollup-plugin-dts": "^1.1.5",
     "rollup-plugin-typescript2": "^0.22.1",
