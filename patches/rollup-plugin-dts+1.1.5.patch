@@ -1,0 +1,24 @@
+diff --git a/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.js b/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.js
+index 05db8f6..94380fa 100644
+--- a/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.js
++++ b/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.js
+@@ -419,6 +419,7 @@ const IGNORE_TYPENODES = new Set([
+     ts.SyntaxKind.NeverKeyword,
+     ts.SyntaxKind.ThisKeyword,
+     ts.SyntaxKind.ThisType,
++    ts.SyntaxKind.BigIntKeyword,
+ ]);
+ class DeclarationScope {
+     constructor({ id, range, transformer }) {
+diff --git a/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.mjs b/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.mjs
+index 0e11635..8973fd5 100644
+--- a/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.mjs
++++ b/node_modules/rollup-plugin-dts/dist/rollup-plugin-dts.mjs
+@@ -412,6 +412,7 @@ const IGNORE_TYPENODES = new Set([
+     SyntaxKind.NeverKeyword,
+     SyntaxKind.ThisKeyword,
+     SyntaxKind.ThisType,
++    SyntaxKind.BigIntKeyword,
+ ]);
+ class DeclarationScope {
+     constructor({ id, range, transformer }) {
