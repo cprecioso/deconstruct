@@ -45,3 +45,14 @@ export function normalizeBuffer(input: InputBuffer): OutputBuffer {
     return Buffer.from(input)
   }
 }
+
+export function makeReadable(buffer: OutputBuffer) {
+  return `<${Array.prototype.slice
+    .call(buffer)
+    .map(n => {
+      let s = n.toString(16)
+      if (s.length < 2) s = "0" + s
+      return s
+    })
+    .join(" ")}>`
+}

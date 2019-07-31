@@ -1,5 +1,10 @@
 import { Deconstructor } from "../../types"
-import { InputBuffer, normalizeBuffer, OutputBuffer } from "../../util"
+import {
+  InputBuffer,
+  makeReadable,
+  normalizeBuffer,
+  OutputBuffer
+} from "../../util"
 
 /** Extract a specific sequence of bytes. Errors if they don't match */
 export function magicNumber(value: InputBuffer): Deconstructor<OutputBuffer> {
@@ -20,8 +25,8 @@ class MagicNumberDeconstructor implements Deconstructor<OutputBuffer> {
     } else {
       throw new Error(
         `Magic number doesn't match at offset ${offset}
-  Expected: <${[...this.expectedValue].map(n => n.toString(16)).join(" ")}>
-       Got: <${[...magicNumber].map(n => n.toString(16)).join(" ")}>`
+  Expected: ${makeReadable(this.expectedValue)}
+       Got: ${makeReadable(magicNumber)}`
       )
     }
   }
