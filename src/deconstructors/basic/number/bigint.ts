@@ -1,3 +1,4 @@
+import { StaticDeconstructor } from "../../../types"
 import { makeDynamic, OutputBuffer } from "../../../util"
 import { NumberDeconstructor } from "./NumberDeconstructor"
 
@@ -82,13 +83,21 @@ function readBigInt64BE(this: OutputBuffer, offset = 0) {
 }
 
 /** Extracts an little-endian signed 64-bit BigInt */
-export const i64LE = makeDynamic(new NumberDeconstructor(8, readBigInt64LE))
+export const i64LE: StaticDeconstructor<bigint> = makeDynamic(
+  new NumberDeconstructor(8, readBigInt64LE)
+)
 
 /** Extracts an big-endian signed 64-bit BigInt */
-export const i64BE = makeDynamic(new NumberDeconstructor(8, readBigInt64BE))
+export const i64BE: StaticDeconstructor<bigint> = makeDynamic(
+  new NumberDeconstructor(8, readBigInt64BE)
+)
 
 /** Extracts an little-endian unsigned 64-bit BigInt */
-export const u64LE = makeDynamic(new NumberDeconstructor(8, readBigUInt64LE))
+export const u64LE: StaticDeconstructor<bigint> = makeDynamic(
+  new NumberDeconstructor(8, readBigUInt64LE)
+)
 
 /** Extracts an big-endian unsigned 64-bit BigInt */
-export const u64BE = makeDynamic(new NumberDeconstructor(8, readBigUInt64BE))
+export const u64BE: StaticDeconstructor<bigint> = makeDynamic(
+  new NumberDeconstructor(8, readBigUInt64BE)
+)

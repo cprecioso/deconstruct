@@ -1,4 +1,5 @@
 import JSBI from "jsbi"
+import { StaticDeconstructor } from "../../../types"
 import { makeDynamic, OutputBuffer } from "../../../util"
 import { NumberDeconstructor } from "./NumberDeconstructor"
 
@@ -87,21 +88,21 @@ function readBigInt64BE(this: OutputBuffer, offset = 0) {
 }
 
 /** Extracts an little-endian signed 64-bit JSBI BigInt */
-export const i64LE_JSBI = makeDynamic(
+export const i64LE_JSBI: StaticDeconstructor<JSBI> = makeDynamic(
   new NumberDeconstructor(8, readBigInt64LE)
 )
 
 /** Extracts an big-endian signed 64-bit JSBI BigInt */
-export const i64BE_JSBI = makeDynamic(
+export const i64BE_JSBI: StaticDeconstructor<JSBI> = makeDynamic(
   new NumberDeconstructor(8, readBigInt64BE)
 )
 
 /** Extracts an little-endian unsigned 64-bit JSBI BigInt */
-export const u64LE_JSBI = makeDynamic(
+export const u64LE_JSBI: StaticDeconstructor<JSBI> = makeDynamic(
   new NumberDeconstructor(8, readBigUInt64LE)
 )
 
 /** Extracts an big-endian unsigned 64-bit JSBI BigInt */
-export const u64BE_JSBI = makeDynamic(
+export const u64BE_JSBI: StaticDeconstructor<JSBI> = makeDynamic(
   new NumberDeconstructor(8, readBigUInt64BE)
 )
