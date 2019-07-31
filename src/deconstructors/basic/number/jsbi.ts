@@ -1,10 +1,13 @@
 import JSBI from "jsbi"
-import { Deconstructor } from "../../../types"
+import { OutputBuffer } from "../../../Buffer"
+import { makeDynamic } from "../../../hybrid-deconstructor"
 import { NumberDeconstructor } from "./NumberDeconstructor"
+
+// Adapted from nodejs core
 
 const big32 = JSBI.BigInt(32)
 
-function readBigUInt64LE(this: Buffer, offset = 0) {
+function readBigUInt64LE(this: OutputBuffer, offset = 0) {
   const first = this[offset]
   const last = this[offset + 7]
 
@@ -23,7 +26,7 @@ function readBigUInt64LE(this: Buffer, offset = 0) {
   return JSBI.add(JSBI.BigInt(lo), JSBI.leftShift(JSBI.BigInt(hi), big32))
 }
 
-function readBigUInt64BE(this: Buffer, offset = 0) {
+function readBigUInt64BE(this: OutputBuffer, offset = 0) {
   const first = this[offset]
   const last = this[offset + 7]
 
@@ -42,7 +45,7 @@ function readBigUInt64BE(this: Buffer, offset = 0) {
   return JSBI.add(JSBI.leftShift(JSBI.BigInt(hi), big32), JSBI.BigInt(lo))
 }
 
-function readBigInt64LE(this: Buffer, offset = 0) {
+function readBigInt64LE(this: OutputBuffer, offset = 0) {
   const first = this[offset]
   const last = this[offset + 7]
 
@@ -63,7 +66,7 @@ function readBigInt64LE(this: Buffer, offset = 0) {
   )
 }
 
-function readBigInt64BE(this: Buffer, offset = 0) {
+function readBigInt64BE(this: OutputBuffer, offset = 0) {
   const first = this[offset]
   const last = this[offset + 7]
 
@@ -84,30 +87,22 @@ function readBigInt64BE(this: Buffer, offset = 0) {
   )
 }
 
-const _i64LE_JSBI: Deconstructor<JSBI> = new NumberDeconstructor(
-  8,
-  readBigInt64LE
-)
 /** Extracts an little-endian signed 64-bit JSBI BigInt */
-export const i64LE_JSBI = () => _i64LE_JSBI
-
-const _i64BE_JSBI: Deconstructor<JSBI> = new NumberDeconstructor(
-  8,
-  readBigInt64BE
+export const i64LE_JSBI = makeDynamic(
+  new NumberDeconstructor(8, readBigInt64LE)
 )
+
 /** Extracts an big-endian signed 64-bit JSBI BigInt */
-export const i64BE_JSBI = () => _i64BE_JSBI
-
-const _u64LE_JSBI: Deconstructor<JSBI> = new NumberDeconstructor(
-  8,
-  readBigUInt64LE
+export const i64BE_JSBI = makeDynamic(
+  new NumberDeconstructor(8, readBigInt64BE)
 )
+
 /** Extracts an little-endian unsigned 64-bit JSBI BigInt */
-export const u64LE_JSBI = () => _u64LE_JSBI
-
-const _u64BE_JSBI: Deconstructor<JSBI> = new NumberDeconstructor(
-  8,
-  readBigUInt64BE
+export const u64LE_JSBI = makeDynamic(
+  new NumberDeconstructor(8, readBigUInt64LE)
 )
+
 /** Extracts an big-endian unsigned 64-bit JSBI BigInt */
-export const u64BE_JSBI = () => _u64BE_JSBI
+export const u64BE_JSBI = makeDynamic(
+  new NumberDeconstructor(8, readBigUInt64BE)
+)
