@@ -14,6 +14,10 @@ const config = [
         typescript: require("typescript"),
         cacheRoot: "node_modules/.cache/rpts2"
       })
+    ],
+    external: [
+      ...require("module").builtinModules,
+      ...Object.keys(require("./package.json").dependencies)
     ]
   },
   {
