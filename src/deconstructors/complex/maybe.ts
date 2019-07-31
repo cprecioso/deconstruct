@@ -1,6 +1,6 @@
 import { Deconstruction, Deconstructor } from "../../types"
 
-/** Applies a deconstructor, returns the default value if it fails*/
+/** Applies a deconstructor, returns the default value if it fails */
 export function maybe<T>(
   inner: Deconstructor<T>,
   defaultValue: T
