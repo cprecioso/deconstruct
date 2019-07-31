@@ -13,7 +13,7 @@ class RawDeconstructor implements Deconstructor<Buffer> {
   _fromBuffer(buffer: Buffer, offset: number) {
     const value = buffer.slice(
       offset,
-      this.bytes ? offset + this.bytes : undefined
+      this.bytes != null ? offset + this.bytes : undefined
     )
     return { value, bytesUsed: value.byteLength }
   }
