@@ -1,4 +1,4 @@
-import { OutputBuffer } from "./Buffer"
+import { OutputBuffer } from "./util"
 
 /**
  * Result of a deconstructed buffer
@@ -38,3 +38,9 @@ export interface Deconstructor<T> {
    */
   _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<T>
 }
+
+/** This is a Deconstructor which you can call or use as-is */
+export type StaticDeconstructor<
+  T,
+  F extends () => Deconstructor<T> = () => Deconstructor<T>
+> = F & Deconstructor<T>

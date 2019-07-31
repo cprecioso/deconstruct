@@ -1,5 +1,5 @@
-import { OutputBuffer } from "../../../Buffer"
 import { Deconstruction, Deconstructor } from "../../../types"
+import { OutputBuffer } from "../../../util"
 import { skip } from "../../basic"
 import {
   FieldAddDeconstructor,

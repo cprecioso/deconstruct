@@ -1,5 +1,5 @@
-import { OutputBuffer } from "../../Buffer"
 import { Deconstruction, Deconstructor } from "../../types"
+import { OutputBuffer } from "../../util"
 
 /** Applies a deconstructor, returns the default value if it fails */
 export function maybe<T>(

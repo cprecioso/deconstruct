@@ -1,4 +1,4 @@
-import { makeDynamic } from "../../../hybrid-deconstructor"
+import { makeDynamic } from "../../../util"
 import { NumberDeconstructor } from "./NumberDeconstructor"
 
 const b = Buffer.prototype

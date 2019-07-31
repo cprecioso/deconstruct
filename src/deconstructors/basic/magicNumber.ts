@@ -1,5 +1,5 @@
-import { InputBuffer, normalizeBuffer, OutputBuffer } from "../../Buffer"
 import { Deconstructor } from "../../types"
+import { InputBuffer, normalizeBuffer, OutputBuffer } from "../../util"
 
 /** Extract a specific sequence of bytes. Errors if they don't match */
 export function magicNumber(value: InputBuffer): Deconstructor<OutputBuffer> {

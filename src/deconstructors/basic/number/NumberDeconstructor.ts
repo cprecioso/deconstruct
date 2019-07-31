@@ -1,5 +1,5 @@
-import { OutputBuffer } from "../../../Buffer"
 import { Deconstruction, Deconstructor } from "../../../types"
+import { OutputBuffer } from "../../../util"
 
 export class NumberDeconstructor<T> implements Deconstructor<T> {
   constructor(

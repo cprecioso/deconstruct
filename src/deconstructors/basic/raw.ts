@@ -1,5 +1,5 @@
-import { OutputBuffer } from "../../Buffer"
 import { Deconstructor } from "../../types"
+import { OutputBuffer } from "../../util"
 
 /** Extracts a sub-range of bytes */
 export function raw(bytes?: number | undefined): Deconstructor<OutputBuffer> {

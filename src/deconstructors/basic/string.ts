@@ -1,5 +1,5 @@
-import { OutputBuffer } from "../../Buffer"
 import { Deconstructor } from "../../types"
+import { OutputBuffer } from "../../util"
 
 /** Extracts a specific number of bytes and tries to decode them with the given encoding */
 export function string(

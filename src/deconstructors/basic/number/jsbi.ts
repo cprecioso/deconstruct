@@ -1,6 +1,5 @@
 import JSBI from "jsbi"
-import { OutputBuffer } from "../../../Buffer"
-import { makeDynamic } from "../../../hybrid-deconstructor"
+import { makeDynamic, OutputBuffer } from "../../../util"
 import { NumberDeconstructor } from "./NumberDeconstructor"
 
 // Adapted from nodejs core

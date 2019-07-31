@@ -1,5 +1,5 @@
-import { OutputBuffer } from "../../Buffer"
 import { Deconstruction, Deconstructor } from "../../types"
+import { OutputBuffer } from "../../util"
 
 /**
  * Creates a new Deconstructor that transforms the value returned by the previous one

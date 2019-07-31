@@ -1,5 +1,5 @@
-import { OutputBuffer } from "../../../Buffer"
 import { Deconstruction, Deconstructor } from "../../../types"
+import { OutputBuffer } from "../../../util"
 
 export interface InternalStructDeconstructor<T extends {}>
   extends Deconstructor<T> {

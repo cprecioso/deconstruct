@@ -1,5 +1,5 @@
-import { InputBuffer } from "../../Buffer"
 import { Deconstructor } from "../../types"
+import { InputBuffer } from "../../util"
 import { transform } from "../complex"
 import { rawUntil } from "./rawUntil"
 

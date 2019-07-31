@@ -1,5 +1,5 @@
-import { InputBuffer, normalizeBuffer, OutputBuffer } from "../../Buffer"
 import { Deconstructor } from "../../types"
+import { InputBuffer, normalizeBuffer, OutputBuffer } from "../../util"
 
 /** Extracts a sub-range of bytes */
 export function rawUntil(value: InputBuffer): Deconstructor<OutputBuffer> {

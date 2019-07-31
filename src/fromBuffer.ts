@@ -1,5 +1,5 @@
-import { InputBuffer, normalizeBuffer } from "./Buffer"
 import { Deconstructor } from "./types"
+import { InputBuffer, normalizeBuffer } from "./util"
 
 /** Executes a Deconstructor on a Buffer, and returns its result */
 export function fromBuffer<T>(

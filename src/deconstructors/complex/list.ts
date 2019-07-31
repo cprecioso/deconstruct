@@ -1,5 +1,5 @@
-import { OutputBuffer } from "../../Buffer"
 import { Deconstructor } from "../../types"
+import { OutputBuffer } from "../../util"
 
 /** Repeats a deconstructor a number of times, or as much as possible if not given */
 export function list<T>(

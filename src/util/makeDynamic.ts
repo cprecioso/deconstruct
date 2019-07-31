@@ -1,7 +1,4 @@
-import { Deconstructor } from "./types"
-
-type StaticDeconstructor<T, F extends () => Deconstructor<T>> = F &
-  Deconstructor<T>
+import { Deconstructor, StaticDeconstructor } from "../types"
 
 export function makeDynamic<T>(
   dec: Deconstructor<T>
