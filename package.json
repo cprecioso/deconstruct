@@ -40,7 +40,7 @@
     "@cprecioso/tsconfig": "^0.0.4",
     "@types/node": "^12.6.8",
     "rollup": "^1.17.0",
-    "rollup-plugin-dts": "^1.1.5",
+    "rollup-plugin-dts": "^1.1.6",
     "rollup-plugin-typescript2": "^0.22.1",
     "typescript": "^3.5.3"
   }

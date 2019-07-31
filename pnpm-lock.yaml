@@ -4,7 +4,7 @@ devDependencies:
   '@cprecioso/tsconfig': 0.0.4_typescript@3.5.3
   '@types/node': 12.6.8
   rollup: 1.17.0
-  rollup-plugin-dts: 1.1.5_rollup@1.17.0+typescript@3.5.3
+  rollup-plugin-dts: 1.1.6_rollup@1.17.0+typescript@3.5.3
   rollup-plugin-typescript2: 0.22.1_rollup@1.17.0+typescript@3.5.3
   typescript: 3.5.3
 lockfileVersion: 5.1
@@ -19,7 +19,7 @@ packages:
   /@babel/highlight/7.5.0:
     dependencies:
       chalk: 2.4.2
-      esutils: 2.0.2
+      esutils: 2.0.3
       js-tokens: 4.0.0
     dev: true
     optional: true
@@ -91,13 +91,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==
-  /esutils/2.0.2:
+  /esutils/2.0.3:
     dev: true
     engines:
       node: '>=0.10.0'
     optional: true
     resolution:
-      integrity: sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
+      integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
   /fs-extra/8.1.0:
     dependencies:
       graceful-fs: 4.2.0
@@ -144,7 +144,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-vIpgF6wfuJOZI7KKKSP+HmiKggadPQAdsp5HiC1mvqnfp0gF1vdwgBWZIdrVft9pgqoMFQN+R7BSWZiBxx+BBw==
-  /rollup-plugin-dts/1.1.5_rollup@1.17.0+typescript@3.5.3:
+  /rollup-plugin-dts/1.1.6_rollup@1.17.0+typescript@3.5.3:
     dependencies:
       rollup: 1.17.0
       typescript: 3.5.3
@@ -152,10 +152,10 @@ packages:
     optionalDependencies:
       '@babel/code-frame': 7.5.5
     peerDependencies:
-      rollup: ^1.16.3
-      typescript: ^3.5.2
+      rollup: ^1.17.0
+      typescript: ^3.5.3
     resolution:
-      integrity: sha512-MxRPkzMcKd9GVc1d1TkQF5AoZFlBmWkG+iXWcat5pNY7f+D06/ngeRMZ2TXZDWdkAuspLnqqQgdmCFlbPtdSuw==
+      integrity: sha512-CqrI0viXojw3ufqFyfJjoyM/zibcvBTr6Ky3BGK9jfuT79hn32PifLwusulC0z3TG0QW6tPfDCb3JI5EOaSjRg==
   /rollup-plugin-typescript2/0.22.1_rollup@1.17.0+typescript@3.5.3:
     dependencies:
       fs-extra: 8.1.0
@@ -216,6 +216,6 @@ specifiers:
   '@types/node': ^12.6.8
   jsbi: ^3.0.0
   rollup: ^1.17.0
-  rollup-plugin-dts: ^1.1.5
+  rollup-plugin-dts: ^1.1.6
   rollup-plugin-typescript2: ^0.22.1
   typescript: ^3.5.3
