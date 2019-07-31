@@ -19,9 +19,9 @@ class MagicNumberDeconstructor implements Deconstructor<OutputBuffer> {
       return { value: magicNumber, bytesUsed: this.bytes }
     } else {
       throw new Error(
-        `Magic number doesn't match
-  Expected: ${this.expectedValue}
-       Got: ${magicNumber}`
+        `Magic number doesn't match at offset ${offset}
+  Expected: <${[...this.expectedValue].map(n => n.toString(16)).join(" ")}>
+       Got: <${[...magicNumber].map(n => n.toString(16)).join(" ")}>`
       )
     }
   }
