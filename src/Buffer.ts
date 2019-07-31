@@ -1,4 +1,9 @@
-export type InputBuffer = ArrayBufferLike | ArrayBufferView | number[] | string
+export type InputBuffer =
+  | Buffer
+  | ArrayBufferLike
+  | ArrayBufferView
+  | number[]
+  | string
 
 export type OutputBuffer = Buffer
 
@@ -19,7 +24,9 @@ function isArrayBufferView(v: any): v is ArrayBufferView {
 }
 
 export function normalizeBuffer(input: InputBuffer): OutputBuffer {
-  if (isArrayBufferView(input)) {
+  if (input instanceof Buffer) {
+    return input
+  } else if (isArrayBufferView(input)) {
     const buf = Buffer.from(input.buffer)
     if (input.byteLength !== input.buffer.byteLength) {
       const start = input.byteOffset
