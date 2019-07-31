@@ -1,3 +1,4 @@
+import { OutputBuffer } from "../../Buffer"
 import { Deconstruction, Deconstructor } from "../../types"
 
 /** Applies a deconstructor, returns the default value if it fails */
@@ -17,7 +18,7 @@ class MaybeDeconstructor<T> implements Deconstructor<T> {
   readonly bytes = undefined
   readonly minBytes = 0
 
-  _fromBuffer(buffer: Buffer, offset: number): Deconstruction<T> {
+  _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<T> {
     try {
       return this.inner._fromBuffer(buffer, offset)
     } catch (_) {

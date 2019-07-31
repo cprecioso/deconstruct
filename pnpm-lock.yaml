@@ -1,5 +1,6 @@
 dependencies:
   jsbi: 3.0.0
+  typedarray-to-buffer: 3.1.5
 devDependencies:
   '@cprecioso/tsconfig': 0.0.4_typescript@3.5.3
   '@types/node': 12.6.8
@@ -119,6 +120,10 @@ packages:
     optional: true
     resolution:
       integrity: sha1-tdRU3CGZriJWmfNGfloH87lVuv0=
+  /is-typedarray/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
   /js-tokens/4.0.0:
     dev: true
     optional: true
@@ -198,6 +203,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
+  /typedarray-to-buffer/3.1.5:
+    dependencies:
+      is-typedarray: 1.0.0
+    dev: false
+    resolution:
+      integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   /typescript/3.5.3:
     dev: true
     engines:
@@ -218,4 +229,5 @@ specifiers:
   rollup: ^1.17.0
   rollup-plugin-dts: ^1.1.6
   rollup-plugin-typescript2: ^0.22.1
+  typedarray-to-buffer: ^3.1.5
   typescript: ^3.5.3

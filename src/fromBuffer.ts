@@ -1,12 +1,14 @@
+import { InputBuffer, normalizeBuffer } from "./Buffer"
 import { Deconstructor } from "./types"
 
 /** Executes a Deconstructor on a Buffer, and returns its result */
 export function fromBuffer<T>(
   deconstructor: Deconstructor<T>,
-  buf: Buffer,
+  input: InputBuffer,
   offset = 0,
   length?: number
 ): T {
+  const buf = normalizeBuffer(input)
   if (buf.length < (deconstructor.bytes || deconstructor.minBytes))
     throw new Error(
       `Buffer (${

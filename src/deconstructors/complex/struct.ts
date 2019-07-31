@@ -1,3 +1,4 @@
+import { OutputBuffer } from "../../Buffer"
 import { Deconstruction, Deconstructor } from "../../types"
 import { empty, skip } from "../basic"
 
@@ -115,7 +116,7 @@ class StructDeconstructor<
     return this._offsetForField(fieldName as string)
   }
 
-  _fromBuffer(buffer: Buffer, offset: number): Deconstruction<T> {
+  _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<T> {
     const previousData = this._previous._fromBuffer(buffer, offset)
     const innerDeconstructor = this._isLate
       ? (this._inner as LateDeconstructor<P, I>)(

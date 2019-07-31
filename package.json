@@ -34,7 +34,8 @@
     "watch": "rollup -cw"
   },
   "dependencies": {
-    "jsbi": "^3.0.0"
+    "jsbi": "^3.0.0",
+    "typedarray-to-buffer": "^3.1.5"
   },
   "devDependencies": {
     "@cprecioso/tsconfig": "^0.0.4",

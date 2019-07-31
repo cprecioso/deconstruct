@@ -1,3 +1,4 @@
+import { OutputBuffer } from "../../Buffer"
 import { Deconstructor } from "../../types"
 
 /** Extracts a specific number of bytes and tries to decode them with the given encoding */
@@ -16,7 +17,7 @@ class StringDeconstructor implements Deconstructor<string> {
 
   readonly minBytes = this.bytes
 
-  _fromBuffer(buffer: Buffer, offset: number) {
+  _fromBuffer(buffer: OutputBuffer, offset: number) {
     return {
       value: buffer.toString(this.encoding, offset, offset + this.bytes),
       bytesUsed: this.bytes

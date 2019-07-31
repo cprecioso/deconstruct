@@ -1,3 +1,4 @@
+import { OutputBuffer } from "../../Buffer"
 import { Deconstructor } from "../../types"
 
 /** Repeats a deconstructor a number of times, or as much as possible if not given */
@@ -25,7 +26,7 @@ class _ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
       ? this.inner.minBytes * this.times
       : 0
 
-  _fromBuffer(buffer: Buffer, offset: number) {
+  _fromBuffer(buffer: OutputBuffer, offset: number) {
     const values: T[] = []
     let accumulatedOffset = offset
     const times = this.times != null ? this.times : Infinity

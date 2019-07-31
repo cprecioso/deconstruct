@@ -1,3 +1,4 @@
+import { OutputBuffer } from "../../Buffer"
 import { Deconstruction, Deconstructor } from "../../types"
 
 /** Lets you analyze previous bytes to declare an appropiate Deconstructor for the following ones.
@@ -33,7 +34,7 @@ class AfterDeconstructor<T, U> implements Deconstructor<U> {
   readonly bytes = undefined
   readonly minBytes = this._previous.minBytes
 
-  _fromBuffer(buffer: Buffer, offset: number): Deconstruction<U> {
+  _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<U> {
     const previousData = this._previous._fromBuffer(buffer, offset)
     const innerDeconstructor = this._innerFn(previousData.value)
     const innerData = innerDeconstructor._fromBuffer(

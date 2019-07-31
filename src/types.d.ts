@@ -1,3 +1,5 @@
+import { OutputBuffer } from "./Buffer"
+
 /**
  * Result of a deconstructed buffer
  */
@@ -34,5 +36,5 @@ export interface Deconstructor<T> {
    *
    * You shouldn't call this function explicitly. However, if you're _implementing_ a new Deconstructor, this is where you do it.
    */
-  _fromBuffer(buffer: Buffer, offset: number): Deconstruction<T>
+  _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<T>
 }

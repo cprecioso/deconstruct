@@ -1,3 +1,4 @@
+import { OutputBuffer } from "../../Buffer"
 import { Deconstruction, Deconstructor } from "../../types"
 
 /**
@@ -21,7 +22,7 @@ class TransformDeconstrutor<T, U> implements Deconstructor<U> {
   readonly bytes = undefined
   readonly minBytes = 0
 
-  _fromBuffer(buffer: Buffer, offset: number): Deconstruction<U> {
+  _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<U> {
     const prev = this.previous._fromBuffer(buffer, offset)
     const newValue = this._transformFn(prev.value)
     return { value: newValue, bytesUsed: prev.bytesUsed }
