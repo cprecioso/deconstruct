@@ -7,23 +7,23 @@ import { Deconstruction, Deconstructor } from "../../types"
  * If you're employing this with the same function a lot, it might be worth it for you (performance-wise) to implement it as a true Deconstructor
  */
 export function transform<T, U>(
-  previous: Deconstructor<T>,
+  inner: Deconstructor<T>,
   transformFn: (value: T) => U
 ): Deconstructor<U> {
-  return new TransformDeconstrutor(previous, transformFn)
+  return new TransformDeconstrutor(inner, transformFn)
 }
 
 class TransformDeconstrutor<T, U> implements Deconstructor<U> {
   constructor(
-    public readonly previous: Deconstructor<T>,
+    public readonly inner: Deconstructor<T>,
     protected readonly _transformFn: (value: T) => U
   ) {}
 
-  readonly bytes = undefined
-  readonly minBytes = 0
+  readonly bytes = this.inner.bytes
+  readonly minBytes = this.inner.minBytes
 
   _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<U> {
-    const prev = this.previous._fromBuffer(buffer, offset)
+    const prev = this.inner._fromBuffer(buffer, offset)
     const newValue = this._transformFn(prev.value)
     return { value: newValue, bytesUsed: prev.bytesUsed }
   }
