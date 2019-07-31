@@ -1,4 +1,4 @@
-import { Deconstruction, Deconstructor } from "../types"
+import { Deconstruction, Deconstructor } from "../../types"
 
 /** Lets you analyze previous bytes to declare an appropiate Deconstructor for the following ones.
  *

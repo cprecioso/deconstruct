@@ -1,4 +1,4 @@
-import { Deconstructor } from "../types"
+import { Deconstructor } from "../../types"
 
 /** Extracts a sub-range of bytes */
 export function raw(bytes?: number | undefined): Deconstructor<Buffer> {

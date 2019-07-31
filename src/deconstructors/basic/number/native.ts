@@ -1,4 +1,4 @@
-import { Deconstructor } from "../../types"
+import { Deconstructor } from "../../../types"
 import { NumberDeconstructor } from "./NumberDeconstructor"
 
 const b = Buffer.prototype

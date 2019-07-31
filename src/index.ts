@@ -1,3 +1,3 @@
+export * from "./deconstructors"
 export * from "./fromBuffer"
-export * from "./operators"
 export * from "./types"

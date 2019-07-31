@@ -1,4 +1,4 @@
-import { Deconstructor } from "../types"
+import { Deconstructor } from "../../types"
 
 /** Extracts a specific number of bytes and tries to decode them with the given encoding */
 export function string(

@@ -1,4 +1,4 @@
-import { Deconstruction, Deconstructor } from "../../types"
+import { Deconstruction, Deconstructor } from "../../../types"
 
 export class NumberDeconstructor<T> implements Deconstructor<T> {
   constructor(

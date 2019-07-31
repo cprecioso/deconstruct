@@ -1,4 +1,4 @@
-import { Deconstructor } from "../types"
+import { Deconstructor } from "../../types"
 
 /** Repeats a deconstructor a number of times, or as much as possible if not given */
 export function list<T>(

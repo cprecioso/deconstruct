@@ -1,6 +1,5 @@
-import { Deconstruction, Deconstructor } from "../types"
-import { empty } from "./empty"
-import { skip } from "./skip"
+import { Deconstruction, Deconstructor } from "../../types"
+import { empty, skip } from "../basic"
 
 type LateDeconstructor<T extends {}, U> = (
   data: T,

@@ -1,5 +1,5 @@
 import JSBI from "jsbi"
-import { Deconstructor } from "../../types"
+import { Deconstructor } from "../../../types"
 import { NumberDeconstructor } from "./NumberDeconstructor"
 
 const big32 = JSBI.BigInt(32)
