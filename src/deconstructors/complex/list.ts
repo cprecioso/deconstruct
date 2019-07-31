@@ -5,11 +5,11 @@ import { OutputBuffer } from "../../util"
 export function list<T>(
   deconstructor: Deconstructor<T>,
   times?: number
-): ListDeconstructor<T> {
-  return new _ListDeconstructor(deconstructor, times)
+): _ListDeconstructor<T> {
+  return new ListDeconstructor(deconstructor, times)
 }
 
-class _ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
+class ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
   constructor(
     public readonly inner: Deconstructor<T>,
     public readonly times?: number
@@ -52,4 +52,6 @@ class _ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
     }
   }
 }
-export type ListDeconstructor<T> = _ListDeconstructor<T>
+
+type _ListDeconstructor<T> = ListDeconstructor<T>
+export { _ListDeconstructor as ListDeconstructor }
