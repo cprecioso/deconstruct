@@ -7,7 +7,6 @@ type LateDeconstructor<T extends {}, U> = (
   bytesUsed: number
 ) => Deconstructor<U>
 
-type Add<T extends {}, F extends string, U> = T & { [K in F]: U }
 
 /** Provides facilities to extract an object of different, named values. */
 export function struct(): PublicStructDeconstructor<{}> {
@@ -30,7 +29,7 @@ interface PublicStructDeconstructor<T> extends Deconstructor<T> {
   field<F extends string, U>(
     fieldName: F,
     inner: Deconstructor<U>
-  ): PublicStructDeconstructor<Add<T, F, U>>
+  ): PublicStructDeconstructor<T & { [K in F]: U }>
   /** Check that the following bytes are extractable with the given Deconstructor */
   check(inner: Deconstructor<any>): PublicStructDeconstructor<T>
   /** Ignore the following number of bytes */
@@ -43,7 +42,7 @@ interface PublicStructDeconstructor<T> extends Deconstructor<T> {
   thenField<F extends string, U>(
     fieldName: F,
     innerFn: LateDeconstructor<T, U>
-  ): PublicStructDeconstructor<Add<T, F, U>>
+  ): PublicStructDeconstructor<T & { [K in F]: U }>
   /**
    * Check that the following bytes are extractable, with the Deconstructor depending on previous values.
    *
@@ -64,7 +63,7 @@ class StructDeconstructor<
   P extends {},
   F extends string | undefined | null,
   I,
-  T extends P = F extends string ? Add<P, F, I> : P
+  T extends P = F extends string ? P & { [K in F]: I } : P
 > implements BasicStructDeconstructor<T>, PublicStructDeconstructor<T> {
   constructor(
     protected readonly _previous: BasicStructDeconstructor<P>,
@@ -85,8 +84,8 @@ class StructDeconstructor<
   field<F extends string, U>(
     fieldName: F,
     inner: Deconstructor<U>
-  ): PublicStructDeconstructor<Add<T, F, U>> {
-    return new StructDeconstructor(this, fieldName, false, inner)
+  ): PublicStructDeconstructor<T & { [K in F]: U }> {
+    return new StructDeconstructor(this, fieldName, false, inner) as any
   }
 
   check(inner: Deconstructor<any>): PublicStructDeconstructor<T> {
@@ -100,8 +99,8 @@ class StructDeconstructor<
   thenField<F extends string, U>(
     fieldName: F,
     innerFn: LateDeconstructor<T, U>
-  ): PublicStructDeconstructor<Add<T, F, U>> {
-    return new StructDeconstructor(this, fieldName, true, innerFn)
+  ): PublicStructDeconstructor<T & { [K in F]: U }> {
+    return new StructDeconstructor(this, fieldName, true, innerFn) as any
   }
 
   thenCheck(innerFn: LateDeconstructor<T, any>): PublicStructDeconstructor<T> {
