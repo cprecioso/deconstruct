@@ -8,7 +8,7 @@ import { Deconstruction, Deconstructor } from "../../types"
  */
 export function transform<T, U>(
   inner: Deconstructor<T>,
-  transformFn: (value: T) => U
+  transformFn: (deconstruction: Deconstruction<T>) => U
 ): Deconstructor<U> {
   return new TransformDeconstrutor(inner, transformFn)
 }
@@ -16,7 +16,7 @@ export function transform<T, U>(
 class TransformDeconstrutor<T, U> implements Deconstructor<U> {
   constructor(
     public readonly inner: Deconstructor<T>,
-    protected readonly _transformFn: (value: T) => U
+    protected readonly _transformFn: (deconstruction: Deconstruction<T>) => U
   ) {}
 
   readonly bytes = this.inner.bytes
@@ -24,7 +24,7 @@ class TransformDeconstrutor<T, U> implements Deconstructor<U> {
 
   _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<U> {
     const prev = this.inner._fromBuffer(buffer, offset)
-    const newValue = this._transformFn(prev.value)
+    const newValue = this._transformFn({ ...prev })
     return { value: newValue, bytesUsed: prev.bytesUsed }
   }
 }

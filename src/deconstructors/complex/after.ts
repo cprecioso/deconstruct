@@ -20,7 +20,7 @@ import { Deconstruction, Deconstructor } from "../../types"
  */
 export function after<T, U>(
   previous: Deconstructor<T>,
-  innerFn: (data: T) => Deconstructor<U>
+  innerFn: (deconstruction: Deconstruction<T>) => Deconstructor<U>
 ): Deconstructor<U> {
   return new AfterDeconstructor(previous, innerFn)
 }
@@ -28,7 +28,9 @@ export function after<T, U>(
 class AfterDeconstructor<T, U> implements Deconstructor<U> {
   constructor(
     protected readonly _previous: Deconstructor<T>,
-    protected readonly _innerFn: (data: T) => Deconstructor<U>
+    protected readonly _innerFn: (
+      deconstruction: Deconstruction<T>
+    ) => Deconstructor<U>
   ) {}
 
   readonly bytes = undefined
@@ -36,7 +38,7 @@ class AfterDeconstructor<T, U> implements Deconstructor<U> {
 
   _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<U> {
     const previousData = this._previous._fromBuffer(buffer, offset)
-    const innerDeconstructor = this._innerFn(previousData.value)
+    const innerDeconstructor = this._innerFn({ ...previousData })
     const innerData = innerDeconstructor._fromBuffer(
       buffer,
       offset + previousData.bytesUsed
