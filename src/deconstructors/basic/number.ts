@@ -1,5 +1,6 @@
 import { Deconstruction, Deconstructor, StaticDeconstructor } from "../../types"
 import { makeDynamic, OutputBuffer } from "../../util"
+import pure from "../../util/pure.macro"
 
 class NumberDeconstructor<T> implements Deconstructor<T> {
   constructor(
@@ -17,7 +18,7 @@ class NumberDeconstructor<T> implements Deconstructor<T> {
   }
 }
 
-const b = Buffer.prototype
+const b = pure(Buffer.prototype)
 
 /** Extracts an unsigned 8-bit integer */
 export const u8: StaticDeconstructor<number> = makeDynamic(
