@@ -22,7 +22,7 @@
   ],
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "lib/index.es.js",
+  "module": "lib/index.mjs",
   "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib"
@@ -34,12 +34,15 @@
     "watch": "rollup -cw"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-syntax-bigint": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
     "@cprecioso/tsconfig": "^0.0.4",
     "@types/node": "^12.6.8",
+    "@wessberg/rollup-plugin-ts": "^1.2.15",
     "rollup": "^1.17.0",
-    "rollup-plugin-dts": "^1.1.6",
-    "rollup-plugin-typescript2": "^0.22.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.7.5"
   },
   "engines": {
     "node": "> 12"
