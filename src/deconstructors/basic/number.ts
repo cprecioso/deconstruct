@@ -1,6 +1,21 @@
-import { StaticDeconstructor } from "../../../types"
-import { makeDynamic } from "../../../util"
-import { NumberDeconstructor } from "./NumberDeconstructor"
+import { Deconstruction, Deconstructor, StaticDeconstructor } from "../../types"
+import { makeDynamic, OutputBuffer } from "../../util"
+
+class NumberDeconstructor<T> implements Deconstructor<T> {
+  constructor(
+    public readonly bytes: number,
+    protected _fn: (this: Buffer, offset: number) => T
+  ) {}
+
+  readonly minBytes = this.bytes
+
+  _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<T> {
+    return {
+      value: this._fn.call(buffer, offset),
+      bytesUsed: this.bytes
+    }
+  }
+}
 
 const b = Buffer.prototype
 
@@ -72,4 +87,24 @@ export const f64LE: StaticDeconstructor<number> = makeDynamic(
 /** Extracts an big-endian 64-bit float (double) */
 export const f64BE: StaticDeconstructor<number> = makeDynamic(
   new NumberDeconstructor(8, b.readDoubleBE)
+)
+
+/** Extracts an little-endian signed 64-bit BigInt */
+export const i64LE: StaticDeconstructor<bigint> = makeDynamic(
+  new NumberDeconstructor(8, b.readBigInt64LE)
+)
+
+/** Extracts an big-endian signed 64-bit BigInt */
+export const i64BE: StaticDeconstructor<bigint> = makeDynamic(
+  new NumberDeconstructor(8, b.readBigInt64BE)
+)
+
+/** Extracts an little-endian unsigned 64-bit BigInt */
+export const u64LE: StaticDeconstructor<bigint> = makeDynamic(
+  new NumberDeconstructor(8, b.readBigUInt64LE)
+)
+
+/** Extracts an big-endian unsigned 64-bit BigInt */
+export const u64BE: StaticDeconstructor<bigint> = makeDynamic(
+  new NumberDeconstructor(8, b.readBigUInt64BE)
 )

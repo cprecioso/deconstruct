@@ -17,7 +17,6 @@ const config = [
     ],
     external: [
       ...require("module").builtinModules,
-      ...Object.keys(require("./package.json").dependencies)
     ]
   },
   {

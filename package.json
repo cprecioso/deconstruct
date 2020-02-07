@@ -33,9 +33,6 @@
     "prepare": "npm run clean; npm run build",
     "watch": "rollup -cw"
   },
-  "dependencies": {
-    "jsbi": "^3.0.0"
-  },
   "devDependencies": {
     "@cprecioso/tsconfig": "^0.0.4",
     "@types/node": "^12.6.8",
@@ -43,5 +40,8 @@
     "rollup-plugin-dts": "^1.1.6",
     "rollup-plugin-typescript2": "^0.22.1",
     "typescript": "^3.5.3"
+  },
+  "engines": {
+    "node": "> 12"
   }
 }
