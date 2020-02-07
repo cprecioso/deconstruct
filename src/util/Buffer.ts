@@ -52,7 +52,7 @@ export function makeReadable(buffer: OutputBuffer) {
     .map(n => {
       let s = n.toString(16)
       if (s.length < 2) s = "0" + s
-      return s
+      return "0x" + s
     })
     .join(" ")}>`
 }
