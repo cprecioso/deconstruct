@@ -18,6 +18,7 @@ type Values<T extends DeconstructorPair, K extends string = Keys<T>> = {
   [P in K]: T extends DeconstructorPair<P, infer V> ? V : never
 }
 
+/** Returns an object with the given key-value pairs */
 export function structPairs<T extends DeconstructorPair>(
   pairs: readonly T[]
 ): ComplexDeconstructor<Values<T>, Keys<T>> {
