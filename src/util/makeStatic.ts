@@ -1,7 +1,7 @@
 import { Deconstructor, StaticDeconstructor } from "../types"
 import pure from "./pure.macro"
 
-const _makeDynamic = <T>(
+const _makeStatic = <T>(
   dec: Deconstructor<T>
 ): StaticDeconstructor<T, () => Deconstructor<T>> =>
   Object.assign(() => dec, {
@@ -10,5 +10,5 @@ const _makeDynamic = <T>(
     _fromBuffer: dec._fromBuffer.bind(dec)
   })
 
-export const makeDynamic = <T extends Deconstructor<any>>(deconstructor: T) =>
-  pure(_makeDynamic(deconstructor))
+export const makeStatic: typeof _makeStatic = deconstructor =>
+  pure(_makeStatic(deconstructor))
