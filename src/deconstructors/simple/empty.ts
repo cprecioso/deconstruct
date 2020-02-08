@@ -1,17 +1,16 @@
-import { Deconstructor } from "../../types"
+import { Deconstructor, StaticDeconstructor } from "../../types"
+import { makeStatic } from "../../util"
 
-/** Returns a Deconstructor that doesn't do anything - a noop. Useful for testing and internals. */
-export function empty<T>(defaultValue: T): Deconstructor<T> {
-  return new EmptyDeconstructor(defaultValue)
-}
-
-class EmptyDeconstructor<T> implements Deconstructor<T> {
-  constructor(protected readonly _defaultValue: T) {}
-
+class EmptyDeconstructor implements Deconstructor<undefined> {
   readonly bytes = 0
   readonly minBytes = 0
 
   _fromBuffer() {
-    return { value: this._defaultValue, bytesUsed: 0 }
+    return { value: undefined, bytesUsed: 0 }
   }
 }
+
+/** Returns a Deconstructor that doesn't do anything - a noop. Useful for testing and internals. */
+export const empty: StaticDeconstructor<undefined> = makeStatic(
+  new EmptyDeconstructor()
+)
