@@ -42,8 +42,10 @@ export interface Deconstructor<T> {
 /**
  * The object or instance returned by your function, with information on the deconstructor and the deconstructor value, if it contains more than one value.
  */
-export interface ComplexDeconstructor<T, K extends string | number>
-  extends Deconstructor<T> {
+export interface ComplexDeconstructor<
+  T,
+  K extends keyof T = Extract<keyof T, T extends Array<any> ? number : string>
+> extends Deconstructor<T> {
   /**
    * Returns the offset where a value is expected to be found, or `undefined` if unknown ahead of time.
    */

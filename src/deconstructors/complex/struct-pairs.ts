@@ -5,28 +5,27 @@ import {
 } from "../../types"
 import { OutputBuffer } from "../../util"
 
-type DeconstructorPair<K extends string = string, T = any> = readonly [
+type DeconstructorPair<K extends string = string, V = any> = readonly [
   K,
-  Deconstructor<T>
+  Deconstructor<V>
 ]
-
-type Keys<T extends DeconstructorPair> = T extends DeconstructorPair<infer U>
-  ? U
-  : never
-
-type Values<T extends DeconstructorPair, K extends string = Keys<T>> = {
-  [P in K]: T extends DeconstructorPair<P, infer V> ? V : never
+type ValueRecordFromDeconstructorPair<T extends DeconstructorPair> = {
+  [P in T[0]]: T extends DeconstructorPair<P, infer V> ? V : never
 }
 
 /** Returns an object with the given key-value pairs */
 export function structPairs<T extends DeconstructorPair>(
   pairs: readonly T[]
-): ComplexDeconstructor<Values<T>, Keys<T>> {
+): ComplexDeconstructor<ValueRecordFromDeconstructorPair<T>> {
   return new StructPairsDeconstructor(pairs)
 }
 
-class StructPairsDeconstructor<T extends DeconstructorPair>
-  implements ComplexDeconstructor<Values<T>, Keys<T>> {
+class StructPairsDeconstructor<
+  T extends DeconstructorPair,
+  VR extends ValueRecordFromDeconstructorPair<
+    T
+  > = ValueRecordFromDeconstructorPair<T>
+> implements ComplexDeconstructor<VR> {
   constructor(protected _pairs: readonly T[]) {}
 
   readonly bytes = this._pairs.reduce((sum, cur) => {
@@ -36,9 +35,9 @@ class StructPairsDeconstructor<T extends DeconstructorPair>
 
   readonly minBytes = this._pairs.reduce((sum, cur) => sum + cur[1].minBytes, 0)
 
-  _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<Values<T>> {
+  _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<VR> {
     let currentOffset = offset
-    const result: Partial<Values<T>> = {}
+    const result: Partial<VR> = {}
 
     for (const [key, deconstructor] of this._pairs) {
       const { bytesUsed, value } = deconstructor._fromBuffer(
@@ -46,13 +45,13 @@ class StructPairsDeconstructor<T extends DeconstructorPair>
         currentOffset
       )
       currentOffset += bytesUsed
-      result[key as Keys<T>] = value
+      result[key as keyof VR] = value
     }
 
-    return { bytesUsed: currentOffset, value: result as Values<T> }
+    return { bytesUsed: currentOffset, value: result as VR }
   }
 
-  offsetForElement(key: Keys<T>): number | undefined {
+  offsetForElement(key: keyof VR): number | undefined {
     let offset = 0
     for (const pair of this._pairs) {
       if (pair[0] === key) return offset

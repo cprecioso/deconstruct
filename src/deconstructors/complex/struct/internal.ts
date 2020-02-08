@@ -1,10 +1,12 @@
-import { Deconstruction, Deconstructor } from "../../../types"
+import {
+  ComplexDeconstructor,
+  Deconstruction,
+  Deconstructor
+} from "../../../types"
 import { OutputBuffer } from "../../../util"
 
-export interface InternalStructDeconstructor<T extends {}>
-  extends Deconstructor<T> {
-  _offsetForElement(fieldName: string): number | undefined
-}
+export interface InternalStructDeconstructor<T extends Record<string, any>>
+  extends ComplexDeconstructor<T, string> {}
 
 export type LateDeconstructor<T extends {}, U> = (
   deconstruction: Deconstruction<T>
@@ -57,11 +59,11 @@ export class FieldAddDeconstructor<
     }
   }
 
-  _offsetForElement(fieldName: string): number | undefined {
+  offsetForElement(fieldName: string): number | undefined {
     if (this._fieldName != null && fieldName === this._fieldName) {
       return this._previous.bytes
     } else {
-      return this._previous._offsetForElement(fieldName)
+      return this._previous.offsetForElement(fieldName)
     }
   }
 }

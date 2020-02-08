@@ -5,11 +5,11 @@ import { OutputBuffer } from "../../util"
 export function list<T>(
   deconstructor: Deconstructor<T>,
   times?: number
-): ComplexDeconstructor<T[], number> {
+): ComplexDeconstructor<T[]> {
   return new ListDeconstructor(deconstructor, times)
 }
 
-class ListDeconstructor<T> implements ComplexDeconstructor<T[], number> {
+class ListDeconstructor<T> implements ComplexDeconstructor<T[]> {
   constructor(
     public readonly inner: Deconstructor<T>,
     public readonly times?: number

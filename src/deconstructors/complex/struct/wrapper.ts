@@ -11,8 +11,8 @@ import {
   LateDeconstructor
 } from "./internal"
 
-class StructDeconstructor<K extends string, T extends Record<K, any>>
-  implements ComplexDeconstructor<T, K> {
+class StructDeconstructor<T extends Record<string, any>>
+  implements ComplexDeconstructor<T> {
   constructor(
     /** @protected Not intended for outside consumption */
     public readonly _inner: InternalStructDeconstructor<T>
@@ -26,29 +26,30 @@ class StructDeconstructor<K extends string, T extends Record<K, any>>
   }
 
   /** Find out where a given field starts */
-  offsetForElement(fieldName: K): number | undefined {
-    return this._inner._offsetForElement(fieldName)
+  offsetForElement(fieldName: keyof T): number | undefined {
+    if (typeof fieldName !== "string") return undefined
+    return this._inner.offsetForElement(fieldName)
   }
 
   /** Add a field to the struct, extracting the following bytes with the given Deconstructor */
   field<F extends string, U>(
     fieldName: F,
     inner: Deconstructor<U>
-  ): StructDeconstructor<F | K, T & { [_ in F]: U }> {
+  ): StructDeconstructor<T & { [_ in F]: U }> {
     return new StructDeconstructor(
       new FieldAddDeconstructor(this._inner, fieldName, false, inner)
     )
   }
 
   /** Check that the following bytes are extractable with the given Deconstructor */
-  check(inner: Deconstructor<any>): StructDeconstructor<K, T> {
+  check(inner: Deconstructor<any>): StructDeconstructor<T> {
     return new StructDeconstructor(
       new FieldAddDeconstructor(this._inner, null, false, inner)
     )
   }
 
   /** Ignore the following number of bytes */
-  skip(bytes: number): StructDeconstructor<K, T> {
+  skip(bytes: number): StructDeconstructor<T> {
     return this.check(skip(bytes))
   }
 
@@ -60,7 +61,7 @@ class StructDeconstructor<K extends string, T extends Record<K, any>>
   thenField<F extends string, U>(
     fieldName: F,
     innerFn: LateDeconstructor<T, U>
-  ): StructDeconstructor<F | K, T & { [_ in F]: U }> {
+  ): StructDeconstructor<T & { [_ in F]: U }> {
     return new StructDeconstructor(
       new FieldAddDeconstructor(this._inner, fieldName, true, innerFn)
     )
@@ -71,7 +72,7 @@ class StructDeconstructor<K extends string, T extends Record<K, any>>
    *
    * Combines `struct.check()` and `after()`
    */
-  thenCheck(innerFn: LateDeconstructor<T, any>): StructDeconstructor<K, T> {
+  thenCheck(innerFn: LateDeconstructor<T, any>): StructDeconstructor<T> {
     return new StructDeconstructor(
       new FieldAddDeconstructor(this._inner, null, true, innerFn)
     )
@@ -84,7 +85,7 @@ class StructDeconstructor<K extends string, T extends Record<K, any>>
    */
   thenSkip(
     innerFn: (deconstructor: Deconstruction<T>) => number
-  ): StructDeconstructor<K, T> {
+  ): StructDeconstructor<T> {
     return this.thenCheck(deconstructor => skip(innerFn(deconstructor)))
   }
 }

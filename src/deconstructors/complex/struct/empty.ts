@@ -9,7 +9,7 @@ export class EmptyStructDeconstructor
     return { value: {}, bytesUsed: 0 }
   }
 
-  _offsetForElement() {
+  offsetForElement() {
     return undefined
   }
 }
