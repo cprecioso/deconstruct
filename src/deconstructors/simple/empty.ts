@@ -10,7 +10,11 @@ class EmptyDeconstructor implements Deconstructor<undefined> {
   }
 }
 
-/** Returns a Deconstructor that doesn't do anything - a noop. Useful for testing and internals. */
+/**
+ * Returns a Deconstructor that doesn't do anything - a noop. Useful for testing and internals.
+ *
+ * @public
+ */
 export const empty: StaticDeconstructor<undefined> = makeStatic(
   new EmptyDeconstructor()
 )

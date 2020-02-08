@@ -1,7 +1,10 @@
 import { Deconstruction, Deconstructor } from "../../types"
 import { OutputBuffer } from "../../util"
 
-/** Lets you analyze previous bytes to declare an appropiate Deconstructor for the following ones.
+/**
+ * Lets you analyze previous bytes to declare an appropiate Deconstructor for the following ones.
+ *
+ * @public
  *
  * @example
  * ```js

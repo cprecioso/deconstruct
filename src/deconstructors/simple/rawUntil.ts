@@ -1,7 +1,11 @@
 import { Deconstructor } from "../../types"
 import { InputBuffer, normalizeBuffer, OutputBuffer } from "../../util"
 
-/** Extracts a sub-range of bytes */
+/**
+ * Extracts a sub-range of bytes
+ *
+ * @public
+ */
 export function rawUntil(value: InputBuffer): Deconstructor<OutputBuffer> {
   const buf = normalizeBuffer(value)
   return new RawUntilDeconstructor(buf)

@@ -1,7 +1,11 @@
 import { Deconstruction, Deconstructor } from "../../types"
 import { OutputBuffer } from "../../util"
 
-/** Applies a deconstructor, returns the default value if it fails */
+/**
+ * Applies a deconstructor, returns the default value if it fails
+ *
+ * @public
+ */
 export function maybe<T>(
   inner: Deconstructor<T>,
   defaultValue: T

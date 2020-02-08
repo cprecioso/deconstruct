@@ -13,7 +13,11 @@ class BooleanDeconstructor implements Deconstructor<boolean> {
   }
 }
 
-/** Reads a `0` or a `1` and returns a `boolean` */
+/**
+ * Reads a `0` or a `1` and returns a `boolean`
+ *
+ * @public
+ */
 export const boolean: StaticDeconstructor<boolean> = makeStatic(
   new BooleanDeconstructor()
 )

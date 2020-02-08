@@ -6,7 +6,11 @@ import {
   OutputBuffer
 } from "../../util"
 
-/** Extract a specific sequence of bytes. Errors if they don't match */
+/**
+ * Extract a specific sequence of bytes. Errors if they don't match
+ *
+ * @public
+ */
 export function magicNumber(value: InputBuffer): Deconstructor<OutputBuffer> {
   const buf = normalizeBuffer(value)
   return new MagicNumberDeconstructor(buf)

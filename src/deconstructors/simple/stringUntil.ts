@@ -3,7 +3,11 @@ import { InputBuffer } from "../../util"
 import { transform } from "../complex"
 import { rawUntil } from "./rawUntil"
 
-/** Read a string until it hits a specific value */
+/**
+ * Read a string until it hits a specific value
+ *
+ * @public
+ */
 export function stringUntil(
   value: InputBuffer,
   encoding?: BufferEncoding

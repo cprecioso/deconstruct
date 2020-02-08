@@ -1,6 +1,10 @@
 import { Deconstructor } from "../../types"
 
-/** Extracts a specific number of bytes and ignores them */
+/**
+ * Extracts a specific number of bytes and ignores them
+ *
+ * @public
+ */
 export function skip(bytes: number): Deconstructor<void> {
   return new SkipDeconstructor(bytes)
 }

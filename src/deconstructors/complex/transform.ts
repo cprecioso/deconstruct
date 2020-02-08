@@ -4,7 +4,10 @@ import { OutputBuffer } from "../../util"
 /**
  * Creates a new Deconstructor that transforms the value returned by the previous one
  *
+ * @remarks
  * If you're employing this with the same function a lot, it might be worth it for you (performance-wise) to implement it as a true Deconstructor
+ *
+ * @public
  */
 export function transform<T, U>(
   inner: Deconstructor<T>,

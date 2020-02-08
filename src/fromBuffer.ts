@@ -1,7 +1,11 @@
 import { Deconstruction, Deconstructor } from "./types"
 import { InputBuffer, normalizeBuffer } from "./util"
 
-/** Executes a Deconstructor on a Buffer, and returns its result */
+/**
+ * Executes a Deconstructor on a Buffer, and returns its result
+ *
+ * @public
+ */
 export function fromBuffer<T>(
   deconstructor: Deconstructor<T>,
   input: InputBuffer,

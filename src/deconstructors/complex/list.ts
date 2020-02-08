@@ -1,7 +1,11 @@
 import { ComplexDeconstructor, Deconstructor } from "../../types"
 import { OutputBuffer } from "../../util"
 
-/** Repeats a deconstructor a number of times, or as much as possible if not given */
+/**
+ * Repeats a deconstructor a number of times, or as much as possible if not given
+ *
+ * @public
+ */
 export function list<T>(
   deconstructor: Deconstructor<T>,
   times?: number

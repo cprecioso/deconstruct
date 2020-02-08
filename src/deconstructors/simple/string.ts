@@ -1,7 +1,11 @@
 import { Deconstructor } from "../../types"
 import { OutputBuffer } from "../../util"
 
-/** Extracts a specific number of bytes and tries to decode them with the given encoding */
+/**
+ * Extracts a specific number of bytes and tries to decode them with the given encoding
+ *
+ * @public
+ */
 export function string(
   bytes: number,
   encoding: BufferEncoding = "utf8"

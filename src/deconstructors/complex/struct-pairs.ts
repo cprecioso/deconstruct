@@ -16,7 +16,10 @@ type ValueRecordFromDeconstructorPair<T extends DeconstructorPair> = {
 /**
  * Returns an object with the given key-value pairs
  *
+ * @remarks
  * If you use TypeScript, add `as const` after the pairs array so you get type-checking for the resulting object.
+ *
+ * @public
  */
 export function structPairs<T extends DeconstructorPair>(
   pairs: readonly T[]

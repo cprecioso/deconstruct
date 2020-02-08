@@ -2,6 +2,8 @@ import { OutputBuffer } from "./util"
 
 /**
  * Result of a deconstructed buffer
+ *
+ * @public
  */
 export interface Deconstruction<T> {
   /**
@@ -17,6 +19,8 @@ export interface Deconstruction<T> {
 
 /**
  * The object or instance returned by your function, with information on the deconstructor and the deconstructor value.
+ *
+ * @public
  */
 export interface Deconstructor<T> {
   /**
@@ -32,7 +36,7 @@ export interface Deconstructor<T> {
   readonly minBytes: number
 
   /**
-   * @protected The function that actually reads the buffer and returns deconstructed value
+   * The function that actually reads the buffer and returns deconstructed value
    *
    * You shouldn't call this function explicitly. However, if you're _implementing_ a new Deconstructor, this is where you do it.
    */
@@ -41,6 +45,8 @@ export interface Deconstructor<T> {
 
 /**
  * The object or instance returned by your function, with information on the deconstructor and the deconstructor value, if it contains more than one value.
+ *
+ * @public
  */
 export interface ComplexDeconstructor<
   T,
@@ -52,7 +58,11 @@ export interface ComplexDeconstructor<
   offsetForElement(key: K): number | undefined
 }
 
-/** This is a Deconstructor which you can call or use as-is */
+/**
+ * This is a Deconstructor which you can call or use as-is
+ *
+ * @public
+ */
 export type StaticDeconstructor<
   T,
   F extends () => Deconstructor<T> = () => Deconstructor<T>
