@@ -13,7 +13,11 @@ type ValueRecordFromDeconstructorPair<T extends DeconstructorPair> = {
   [P in T[0]]: T extends DeconstructorPair<P, infer V> ? V : never
 }
 
-/** Returns an object with the given key-value pairs */
+/**
+ * Returns an object with the given key-value pairs
+ *
+ * If you use TypeScript, add `as const` after the pairs array so you get type-checking for the resulting object.
+ */
 export function structPairs<T extends DeconstructorPair>(
   pairs: readonly T[]
 ): ComplexDeconstructor<ValueRecordFromDeconstructorPair<T>> {
@@ -26,7 +30,7 @@ class StructPairsDeconstructor<
     T
   > = ValueRecordFromDeconstructorPair<T>
 > implements ComplexDeconstructor<VR> {
-  constructor(protected _pairs: readonly T[]) {}
+  constructor(protected readonly _pairs: readonly T[]) {}
 
   readonly bytes = this._pairs.reduce((sum, cur) => {
     const bytes = cur[1].bytes
