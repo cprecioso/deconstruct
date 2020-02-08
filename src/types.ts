@@ -39,6 +39,17 @@ export interface Deconstructor<T> {
   _fromBuffer(buffer: OutputBuffer, offset: number): Deconstruction<T>
 }
 
+/**
+ * The object or instance returned by your function, with information on the deconstructor and the deconstructor value, if it contains more than one value.
+ */
+export interface ComplexDeconstructor<T, K extends string | number>
+  extends Deconstructor<T> {
+  /**
+   * Returns the offset where a value is expected to be found, or `undefined` if unknown ahead of time.
+   */
+  offsetForElement(key: K): number | undefined
+}
+
 /** This is a Deconstructor which you can call or use as-is */
 export type StaticDeconstructor<
   T,

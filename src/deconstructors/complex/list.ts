@@ -1,15 +1,15 @@
-import { Deconstructor } from "../../types"
+import { ComplexDeconstructor, Deconstructor } from "../../types"
 import { OutputBuffer } from "../../util"
 
 /** Repeats a deconstructor a number of times, or as much as possible if not given */
 export function list<T>(
   deconstructor: Deconstructor<T>,
   times?: number
-): _ListDeconstructor<T> {
+): ComplexDeconstructor<T[], number> {
   return new ListDeconstructor(deconstructor, times)
 }
 
-class ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
+class ListDeconstructor<T> implements ComplexDeconstructor<T[], number> {
   constructor(
     public readonly inner: Deconstructor<T>,
     public readonly times?: number
@@ -52,6 +52,3 @@ class ListDeconstructor<T> implements Deconstructor<ReadonlyArray<T>> {
     }
   }
 }
-
-type _ListDeconstructor<T> = ListDeconstructor<T>
-export { _ListDeconstructor as ListDeconstructor }

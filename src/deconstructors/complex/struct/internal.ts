@@ -3,7 +3,7 @@ import { OutputBuffer } from "../../../util"
 
 export interface InternalStructDeconstructor<T extends {}>
   extends Deconstructor<T> {
-  _offsetForField(fieldName: string): number | undefined
+  _offsetForElement(fieldName: string): number | undefined
 }
 
 export type LateDeconstructor<T extends {}, U> = (
@@ -14,7 +14,7 @@ export class FieldAddDeconstructor<
   P extends {},
   F extends string | undefined | null,
   I,
-  T extends P = F extends string ? P & { [K in F]: I } : P
+  T extends P = F extends string ? P & { [_ in F]: I } : P
 > implements InternalStructDeconstructor<T> {
   constructor(
     protected readonly _previous: InternalStructDeconstructor<P>,
@@ -57,11 +57,11 @@ export class FieldAddDeconstructor<
     }
   }
 
-  _offsetForField(fieldName: string): number | undefined {
+  _offsetForElement(fieldName: string): number | undefined {
     if (this._fieldName != null && fieldName === this._fieldName) {
       return this._previous.bytes
     } else {
-      return this._previous._offsetForField(fieldName)
+      return this._previous._offsetForElement(fieldName)
     }
   }
 }

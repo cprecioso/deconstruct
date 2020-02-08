@@ -1,12 +1,12 @@
-import { Deconstructor } from "../../types"
-import { struct, StructDeconstructor } from "./struct"
+import { ComplexDeconstructor } from "../../types"
 import { boolean } from "../simple"
+import { struct } from "./struct"
 
 export function flags<T extends string>(
   flagNames: readonly T[]
-): Deconstructor<Record<T, boolean>> {
+): ComplexDeconstructor<Record<T, boolean>, T> {
   return flagNames.reduce(
     (struct, flagName) => struct.field(flagName, boolean()),
-    struct() as StructDeconstructor<Record<T, boolean>>
+    struct()
   )
 }
