@@ -1,6 +1,6 @@
 import { Deconstruction, Deconstructor } from "../../../types"
 import { OutputBuffer } from "../../../util"
-import { skip } from "../../basic"
+import { skip } from "../../simple"
 import {
   FieldAddDeconstructor,
   InternalStructDeconstructor,

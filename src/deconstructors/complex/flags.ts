@@ -1,6 +1,6 @@
 import { Deconstructor } from "../../types"
-import { boolean } from "../basic"
 import { struct, StructDeconstructor } from "./struct"
+import { boolean } from "../simple"
 
 export function flags<T extends string>(
   flagNames: readonly T[]
