@@ -1,15 +1,19 @@
-import { Deconstructor } from "../../types"
-import { makeStatic } from "../../util"
+import { Deconstruction, Deconstructor, StaticDeconstructor } from "../../types"
+import { makeStatic, OutputBuffer } from "../../util"
 
-export function boolean(): Deconstructor<boolean> {
-  return BooleanDeconstructor
+class BooleanDeconstructor implements Deconstructor<boolean> {
+  readonly bytes = 1
+  readonly minBytes = 1
+
+  _fromBuffer(buf: OutputBuffer, offset: number): Deconstruction<boolean> {
+    return {
+      value: buf[offset] === 0x01,
+      bytesUsed: 1
+    }
+  }
 }
 
-const BooleanDeconstructor: Deconstructor<boolean> = makeStatic({
-  bytes: 1,
-  minBytes: 1,
-  _fromBuffer: (buf, offset) => ({
-    value: buf[offset] === 0x01,
-    bytesUsed: 1
-  })
-})
+/** Reads a `0` or a `1` and returns a `boolean` */
+export const boolean: StaticDeconstructor<boolean> = makeStatic(
+  new BooleanDeconstructor()
+)
