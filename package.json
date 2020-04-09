@@ -42,7 +42,7 @@
     "@cprecioso/tsconfig": "^0.0.4",
     "@microsoft/api-documenter": "^7.7.12",
     "@microsoft/api-extractor": "^7.7.8",
-    "@types/node": "^12.6.8",
+    "@types/node": "^13.11.1",
     "@wessberg/rollup-plugin-ts": "^1.2.15",
     "babel-plugin-macros": "^2.8.0",
     "rollup": "^1.17.0",
